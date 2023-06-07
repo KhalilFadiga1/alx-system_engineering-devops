@@ -1,1 +1,1 @@
-display current directory in a long format including hidden files
+create a directory named my_first_directory in tmp directory
