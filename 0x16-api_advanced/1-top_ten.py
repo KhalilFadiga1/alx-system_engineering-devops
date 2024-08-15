@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-"""Print top 10 posts on a given Reddit subreddit."""
+"""
+Print top 10 posts on a given Reddit subreddit.
+"""
 import requests
 
 
 def top_ten(subreddit):
     """
-    Prints the titles of the posts of a given subreddit
+    Function that queries and prints the titles of to ten posts of a
+        given Reddit subreddit.
     """
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
