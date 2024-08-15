@@ -5,6 +5,7 @@ Counts keywords of all hot post of a Reddit subreddit.
 import requests
 import sys
 
+
 def count_words(subreddit, word_list, after=None, count={}):
     """
     Function that queries a Reddit API, parses all hot post titles,
@@ -15,12 +16,12 @@ def count_words(subreddit, word_list, after=None, count={}):
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
-    headers = {"user-agent" : "request"}
+    headers = {"user-agent": "request"}
 
-    params = {"limit" : 100}
+    params = {"limit": 100}
 
     if after:
-       params['after'] = after
+        params['after'] = after
 
     response = requests.get(url,
                             headers=headers,
@@ -37,7 +38,7 @@ def count_words(subreddit, word_list, after=None, count={}):
 
     for post in sub_info:
         title = post.get("data", {}).get("title").lower()
-        
+
         for word in word_list:
             if word.lower() in title:
                 count[word] = count.get(word, 0) + title.count(word.lower())
@@ -47,7 +48,7 @@ def count_words(subreddit, word_list, after=None, count={}):
     else:
         sorted_count = sorted(count.items(),
                               key=lambda x: (-x[1], x[0].lower()))
-        
+
         for word, num in sorted_count:
             print("{}: {}".format(word.lower(), num))
 
@@ -55,6 +56,7 @@ def count_words(subreddit, word_list, after=None, count={}):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
-        print("Ex: {} programming 'python java javaScript'".format(sys.argv[0]))
+        print("Ex: {} programming 'python java javaScript'"
+              .format(sys.argv[0]))
     else:
         result = count_words(sys.argv[1], [x for x in sys.argv[2].split()])
