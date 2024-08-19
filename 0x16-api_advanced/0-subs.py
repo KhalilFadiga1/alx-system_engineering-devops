@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Uses Reddit API to print the number of subreddit subscribers
+    Uses Reddit API to print the number of subreddit subscribers
 """
 import requests
 
